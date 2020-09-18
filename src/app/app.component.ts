@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { MatButtonToggleChange } from "@angular/material/button-toggle";
+import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Subscription } from "rxjs";
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSub: Subscription;
   originalFilter: (data: any, filter: string) => boolean;
 
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.dataSub = this.placeholderService.get().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
       this.originalFilter = this.dataSource.filterPredicate;
     });
     console.log("OnInit");

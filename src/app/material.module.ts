@@ -5,6 +5,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   declarations: [],
@@ -15,6 +16,7 @@ import { MatInputModule } from "@angular/material/input";
     MatButtonToggleModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatTableModule,
@@ -23,6 +25,7 @@ import { MatInputModule } from "@angular/material/input";
     MatButtonToggleModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}
