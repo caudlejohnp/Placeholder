@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { MatButtonToggleChange } from "@angular/material/button-toggle";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Subscription } from "rxjs";
@@ -37,5 +38,31 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.dataSub.unsubscribe();
     console.log("OnDestroy");
+  }
+
+  buttonToggle(event: MatButtonToggleChange) {
+    switch (event.value) {
+      case "id":
+        this.dataSource.filterPredicate = this.filterById;
+        break;
+      case "userId":
+        this.dataSource.filterPredicate = this.filterByUserId;
+        break;
+      case "all":
+        this.dataSource.filterPredicate = this.originalFilter;
+        break;
+    }
+  }
+
+  private filterById(data: any, filter: string): boolean {
+    return !filter || data.id === +filter;
+  }
+
+  private filterByUserId(data: any, filter: string): boolean {
+    return !filter || data.userId === +filter;
+  }
+
+  applyFilter(value: string): void {
+    this.dataSource.filter = value;
   }
 }

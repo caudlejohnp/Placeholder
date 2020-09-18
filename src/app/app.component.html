@@ -1,5 +1,28 @@
+<label style="margin-left: 5%;">Filter By</label>
+<mat-button-toggle-group
+  value="all"
+  (change)="buttonToggle($event)"
+  style="margin: 2%;"
+>
+  <mat-button-toggle value="id">Id</mat-button-toggle>
+  <mat-button-toggle value="userId">User Id</mat-button-toggle>
+  <mat-button-toggle value="all">All</mat-button-toggle>
+</mat-button-toggle-group>
+<mat-form-field>
+  <input
+    matInput
+    (keyup)="applyFilter($event.target.value)"
+    placeholder="filter"
+  />
+</mat-form-field>
 <div class="my-table">
-  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+  <table
+    style="width: 80%;"
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+  >
     <ng-container
       *ngFor="let column of columns"
       [matColumnDef]="column.columnDef"
